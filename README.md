@@ -13,6 +13,13 @@ Centralized complaint management platform for public services, enabling citizens
 
 ---
 
+## ⚠️ Warnings & Security Notes
+- **API Keys & Tokens:** This project uses Facebook Graph API and WhatsApp API. Do **not expose your personal API keys** in the repository. Store them securely in `.env` or environment variables.  
+- **Potential Errors:** Missing or incorrect API keys may cause runtime errors.  
+- **Sensitive Data:** Do not include real user data or credentials in the repository.  
+
+---
+
 ## 🛠️ Tech Stack
 - **Backend:** Python, Django  
 - **Database:** MySQL  
