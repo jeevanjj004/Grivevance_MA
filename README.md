@@ -1,10 +1,10 @@
 # Grievance Management System
-Centralized complaint management platform for public services, enabling citizens to submit complaints via website, WhatsApp, and Facebook APIs, with automated routing and tracking for the Idukki Collectorate.
+Centralized complaint management platform for public services, enabling citizens to submit complaints via website, WhatsApp, and Facebook comments (retrieved via Graph API), with automated routing and tracking for the Idukki Collectorate.
 
 ---
 
 ## 🚀 Features
-- **Complaint Submission:** Users can submit complaints through the website, WhatsApp, and Facebook APIs  
+- **Complaint Submission:** Users can submit complaints through the website, WhatsApp, and Facebook comments (retrieved via Graph API)  
 - **Automated Routing:** Complaints are automatically assigned to the appropriate department or officer  
 - **Status Tracking:** Citizens can track the status of their complaints in real-time  
 - **Dashboard:** Interactive dashboard for officials with filters, search, and sorting  
@@ -17,7 +17,7 @@ Centralized complaint management platform for public services, enabling citizens
 - **Backend:** Python, Django  
 - **Database:** MySQL  
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap  
-- **Other:** WhatsApp API, Facebook API for complaint submission and notifications  
+- **Other:** WhatsApp API, Facebook Graph API for complaint submission and notifications  
 
 ---
 
