@@ -1,257 +1,225 @@
-🏛️ Grievance Management System (GMS)
+# 🏛️ Grievance Management System (GMS)
 
-Project Overview · Architecture · Workflow Documentation
+> **A centralized, secure, and role-driven digital platform for managing public grievances at the district administration level.**
 
-🔹 Overview
+---
 
-The Grievance Management System (GMS) is a centralized, web-based administrative platform designed to digitally manage public grievances submitted to district administrations.
+## 📌 Table of Contents
 
-It enables:
+* [Overview](#-overview)
+* [Problem Statement & Solution](#-problem-statement--solution)
+* [User Roles & Privilege Hierarchy](#-user-roles--privilege-hierarchy)
+* [System Architecture](#-system-architecture)
+* [Database Design](#-database-design)
+* [Technology Stack](#-technology-stack)
+* [Detailed Workflow](#-detailed-workflow)
+* [Security Mechanisms](#-security-mechanisms)
+* [Key Features](#-key-features)
+* [Installation & Setup](#-installation--setup)
+* [Environment & Configuration](#-environment--configuration)
+* [Warnings & Security Notes](#-warnings--security-notes)
+* [Future Enhancements](#-future-enhancements)
+* [Conclusion](#-conclusion)
 
-Structured grievance intake
+---
 
-Controlled assignment
+## 🔹 Overview
 
-Continuous monitoring
+The **Grievance Management System (GMS)** is a web-based administrative platform designed to digitally manage public grievances submitted to district administrations.
 
-Accountable and time-bound resolution
+The system ensures that every grievance is:
 
-through clearly defined administrative roles and workflows.
+* 📌 **Traceable**
+* ⏱️ **Time-bound**
+* 📋 **Audit-ready**
 
-The system consolidates grievances from multiple channels into a single platform, ensuring every grievance is:
+By enforcing clearly defined administrative roles and workflows, GMS improves transparency, accountability, and resolution efficiency.
 
-📌 Traceable
+---
 
-⏱️ Time-bound
+## ❌ Problem Statement & Solution
 
-📋 Audit-ready
+### Problems Addressed
 
-📌 1. Problem Statement & Solution
-❌ Problems Addressed
+* Fragmented grievance submissions across multiple channels
+* Manual tracking leading to delays in resolution
+* Lack of accountability and administrative visibility
+* No structured deadline enforcement
+* Poor auditability of grievance handling
 
-Fragmented grievance submissions across multiple channels
+### System Solution
 
-Manual tracking and delayed grievance resolution
+* Centralized grievance intake and tracking
+* Role-Based Access Control (RBAC)
+* Priority-based automatic deadline calculation
+* Enforced accountability through system controls
+* Complete audit trail for administrative review
 
-Lack of accountability and administrative visibility
+---
 
-Absence of structured deadline enforcement
+## 👥 User Roles & Privilege Hierarchy
 
-Limited auditability of grievance handling
+The system follows a strict **Role-Based Access Control (RBAC)** model.
 
-✅ System Solution
+### 🔑 User Roles
 
-Centralized grievance intake and tracking
+* System Administrator
+* District Collector
+* District Officer
+* Head of Department (HOD)
+* Department Officers
+* Public Users
+* Petition Entry Users
 
-Role-based assignment and monitoring
+---
 
-Automatic priority-based deadline management
+## 🛂 Privilege Details
 
-Enforced accountability through system controls
+| Role                         | Privileges                                                                  |
+| ---------------------------- | --------------------------------------------------------------------------- |
+| **System Administrator**     | Full system access, configuration, and maintenance                          |
+| **District Collector**       | District-wide control, priority override, monitoring, administrative orders |
+| **District Officer**         | District-level oversight (excluding sensitive operations)                   |
+| **Head of Department (HOD)** | Department control, officer assignment, performance monitoring              |
+| **Department Officers**      | Grievance execution, updates, inter-department requests                     |
+| **Public Users**             | Grievance submission, document upload, status tracking                      |
+| **Petition Entry Users**     | Digitization and entry of physical petitions                                |
 
-Complete audit trail for administrative review
+🔐 *Sensitive operations require OTP and password verification.*
 
-👥 2. Users & Privilege Hierarchy
+---
 
-The system follows a strict Role-Based Access Control (RBAC) model.
+## 🏗️ System Architecture
 
-🔑 User Roles
+* **Frontend** handles user interaction and dashboards
+* **Backend (Django MVT)** manages business logic and workflows
+* **Database (MySQL)** ensures normalized, consistent data storage
+* **External APIs** enable multi-channel grievance intake
 
-System Administrator
+---
 
-District Collector
+## 🗄️ Database Design
 
-District Officer
+The system uses a **normalized relational database** implemented with **MySQL**.
 
-Head of Department (HOD)
+### 📦 Core Tables
 
-Department Officers
+* `User`
+* `PublicUserProfile`
+* `District`
+* `Department`
+* `CollectorProfile`
+* `DistrictOfficerProfile`
+* `OfficerProfile`
+* `IDTrackers`
+* `Grievance`
 
-Public Users
+### 🔄 Workflow Tables
 
-Petition Entry Users
+* `GrievanceAssignment`
+* `GrievanceFlow`
+* `FlowStage`
+* `GrievanceStatusLog`
+* `GrievanceTransfer`
 
-🛂 3. Privilege Details
-Role	Privileges
-System Administrator	Full system access, configuration, and technical maintenance
-District Collector	District-wide access, priority control, monitoring, and administrative orders
-District Officer	District-level oversight excluding sensitive operations
-Head of Department (HOD)	Department control, officer assignment, and performance supervision
-Department Officers	Grievance execution, updates, and inter-department requests
-Public Users	Grievance submission, document upload, and tracking
-Petition Entry Users	Digitization and entry of physical petitions
+⚡ Indexes are applied on **status**, **priority**, and **due dates** for optimized performance.
 
-🔐 Sensitive operations require OTP and password verification
+---
 
-🗄️ 4. Database Design Overview
+## 🛠️ Technology Stack
 
-The system uses a normalized relational database design implemented with MySQL.
+### 💻 Frontend
 
-📦 Core Tables
+* HTML
+* CSS
+* JavaScript
 
-User
+### ⚙️ Backend
 
-PublicUserProfile
+* Django (Python) — **MVT Architecture**
 
-District
+### 🗃️ Database
 
-Department
+* MySQL
 
-CollectorProfile
+### 🔌 Integrations
 
-DistrictOfficerProfile
+* Facebook Graph API
+* WhatsApp API
 
-OfficerProfile
+---
 
-IDTrackers
+## 🔁 Detailed Workflow
 
-Grievance
+### 📝 1. Grievance Registration
 
-🔄 Workflow Tables
+* Submission via Web Portal, WhatsApp, Facebook, or Office Entry
+* Unique grievance ID auto-generated
+* Automatic district and department mapping
 
-GrievanceAssignment
+### 🏷️ 2. Classification & Priority
 
-GrievanceFlow
+* Automatic priority assignment
+* Due date calculated based on priority
+* Priority modification allowed for District Collector
 
-FlowStage
+### 🏢 3. Department Assignment
 
-GrievanceStatusLog
+* HOD assigns grievance to department officers
+* Assignment logged with timestamps
 
-GrievanceTransfer
+### 👨‍💼 4. Officer Action & Updates
 
-⚡ Indexes are applied on status, priority, and due dates for optimized performance.
+* Officers update grievance status periodically
+* Updates visible to:
 
-🛠️ 5. Technology Stack
-💻 Frontend
+  * Higher authorities
+  * Concerned departments
+  * Public users
 
-HTML
+### 🔀 5. Inter-Department Transfer
 
-CSS
+* Officer initiates transfer request
+* HOD approval required
+* Complete transfer history maintained
 
-JavaScript
+### ⏰ 6. Deadline Enforcement
 
-⚙️ Backend
+* Automated reminders before due date
+* Mandatory justification for overdue grievances
 
-Django (Python) — MVT Architecture
+### ✅ 7. Resolution & Closure
 
-🗃️ Database
+* Grievances marked as **Resolved** or **Rejected**
+* Full lifecycle retained for audit purposes
 
-MySQL
+---
 
-🔌 Integrations
+## 🔐 Security Mechanisms
 
-Facebook Graph API
+* Secure authentication and session management
+* Role-based access enforcement
+* OTP-based authorization for sensitive actions
+* Dual authorization during Collector–District Officer handover
+* Audit logging for all critical operations
 
-WhatsApp API
+---
 
-🔁 6. Detailed Workflow
-📝 6.1 Grievance Registration
+## ⭐ Key Features
 
-Submission via Web Portal, WhatsApp, Facebook, or Office Entry
+* Multi-channel grievance intake
+* Role-specific dashboards
+* Priority-based deadline management
+* SMS and email acknowledgements
+* Grievance tracking using unique ID
+* Filtered and exportable reports (PDF / Excel)
+* Administrative order management
 
-Unique grievance ID auto-generated
+---
 
-Automatic district and department mapping
+## 💻 Installation & Setup
 
-🏷️ 6.2 Classification & Priority
-
-Automatic priority assignment
-
-Due date calculated automatically
-
-Priority modification allowed for District Collector
-
-🏢 6.3 Department Assignment
-
-HOD assigns grievances to department officers
-
-Assignment logged with timestamps
-
-👨‍💼 6.4 Officer Action & Updates
-
-Officers update grievance status periodically
-
-Updates visible to:
-
-Higher authorities
-
-Concerned departments
-
-Public users
-
-🔀 6.5 Inter-Department Transfer
-
-Officer initiates transfer request
-
-HOD approval required
-
-Complete transfer history maintained
-
-⏰ 6.6 Deadline Enforcement
-
-Automated reminders before due date
-
-Mandatory justification for overdue grievances
-
-✅ 6.7 Resolution & Closure
-
-Grievances marked as Resolved or Rejected
-
-Full lifecycle retained for audit purposes
-
-🔐 7. Security Mechanisms
-
-Secure authentication and session management
-
-Role-based access enforcement
-
-OTP-based authorization for sensitive actions
-
-Dual authorization during Collector–District Officer handover
-
-Audit logging for all critical operations
-
-⭐ 8. Key Features
-
-Multi-channel grievance intake
-
-Role-specific dashboards
-
-Priority-based deadline management
-
-SMS and email acknowledgements
-
-Grievance tracking using unique ID
-
-Filtered and exportable reports (PDF / Excel)
-
-Administrative order management
-
-🧾 9. Conclusion
-
-The Grievance Management System (GMS) provides a structured, secure, and accountable digital framework for grievance redressal.
-
-With its robust data model, enforced workflows, deadline accountability, and audit-ready architecture, the system is well-suited for:
-
-✔ Long-term deployment
-
-✔ Future expansion
-
-✔ Sustained administrative adoption
-
-⚠️ Warnings & Security Notes
-
-🔑 API Keys & Tokens
-Do not expose Facebook or WhatsApp API keys in the repository.
-Store them securely using .env files or environment variables.
-
-🚨 Potential Errors
-Missing or invalid API credentials may cause runtime failures.
-
-🔒 Sensitive Data
-Never commit real user data or credentials.
-
-💻 Installation & Setup
+```bash
 # Clone the repository
 git clone https://github.com/jeevanjj004/Grivevance_MA.git
 
@@ -277,6 +245,71 @@ python manage.py migrate
 
 # Run development server
 python manage.py runserver
+```
 
-# Access application
+🔗 Access the application at:
+
+```
 http://127.0.0.1:8000/
+```
+
+---
+
+## 🌱 Environment & Configuration
+
+Create a `.env` file in the project root:
+
+```
+SECRET_KEY=your_django_secret_key
+DEBUG=True
+DB_NAME=your_database
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=3306
+FACEBOOK_API_KEY=xxxx
+WHATSAPP_API_KEY=xxxx
+```
+
+---
+
+## ⚠️ Warnings & Security Notes
+
+### 🔑 API Keys & Tokens
+
+* Never expose Facebook or WhatsApp API keys in the repository
+* Store credentials securely using `.env` files or environment variables
+
+### 🚨 Potential Errors
+
+* Missing or invalid API credentials may cause runtime failures
+
+### 🔒 Sensitive Data
+
+* Never commit real user data or credentials
+
+---
+
+## 🚀 Future Enhancements
+
+* Mobile application integration
+* AI-based grievance categorization
+* Advanced analytics & dashboards
+* Multilingual support
+* State-level aggregation and monitoring
+
+---
+
+## 🧾 Conclusion
+
+The **Grievance Management System (GMS)** provides a structured, secure, and accountable digital framework for grievance redressal.
+
+Its robust architecture, enforced workflows, and audit-ready design make it suitable for:
+
+* ✔ Long-term deployment
+* ✔ Future scalability
+* ✔ Sustained administrative adoption
+
+---
+
+📌 *Developed for transparent, efficient, and accountable governance.*
