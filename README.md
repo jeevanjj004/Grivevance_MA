@@ -1,12 +1,30 @@
 🏛️ Grievance Management System (GMS)
 
-Project Overview, Architecture & Workflow Documentation
+Project Overview · Architecture · Workflow Documentation
+
+🔹 Overview
 
 The Grievance Management System (GMS) is a centralized, web-based administrative platform designed to digitally manage public grievances submitted to district administrations.
 
-It enables structured intake, controlled assignment, continuous monitoring, and accountable resolution of grievances through clearly defined administrative roles and workflows.
+It enables:
 
-The platform consolidates grievances from multiple channels into a single system, ensuring every grievance is traceable, time-bound, and audit-ready.
+Structured grievance intake
+
+Controlled assignment
+
+Continuous monitoring
+
+Accountable and time-bound resolution
+
+through clearly defined administrative roles and workflows.
+
+The system consolidates grievances from multiple channels into a single platform, ensuring every grievance is:
+
+📌 Traceable
+
+⏱️ Time-bound
+
+📋 Audit-ready
 
 📌 1. Problem Statement & Solution
 ❌ Problems Addressed
@@ -35,7 +53,7 @@ Complete audit trail for administrative review
 
 👥 2. Users & Privilege Hierarchy
 
-The system enforces a strict Role-Based Access Control (RBAC) model.
+The system follows a strict Role-Based Access Control (RBAC) model.
 
 🔑 User Roles
 
@@ -63,11 +81,11 @@ Department Officers	Grievance execution, updates, and inter-department requests
 Public Users	Grievance submission, document upload, and tracking
 Petition Entry Users	Digitization and entry of physical petitions
 
-🔐 Sensitive actions require OTP and password verification
+🔐 Sensitive operations require OTP and password verification
 
 🗄️ 4. Database Design Overview
 
-The system uses a normalized relational database implemented with MySQL.
+The system uses a normalized relational database design implemented with MySQL.
 
 📦 Core Tables
 
@@ -101,17 +119,26 @@ GrievanceStatusLog
 
 GrievanceTransfer
 
-⚡ Indexes are applied on status, priority, and due dates for optimized reporting and performance.
+⚡ Indexes are applied on status, priority, and due dates for optimized performance.
 
 🛠️ 5. Technology Stack
+💻 Frontend
 
-Frontend: HTML, CSS, JavaScript
+HTML
 
-Backend: Django (Python) – MVT Architecture
+CSS
 
-Database: MySQL
+JavaScript
 
-Integrations:
+⚙️ Backend
+
+Django (Python) — MVT Architecture
+
+🗃️ Database
+
+MySQL
+
+🔌 Integrations
 
 Facebook Graph API
 
@@ -120,7 +147,7 @@ WhatsApp API
 🔁 6. Detailed Workflow
 📝 6.1 Grievance Registration
 
-Grievances submitted via Web Portal, WhatsApp, Facebook, or Office Entry
+Submission via Web Portal, WhatsApp, Facebook, or Office Entry
 
 Unique grievance ID auto-generated
 
@@ -128,7 +155,7 @@ Automatic district and department mapping
 
 🏷️ 6.2 Classification & Priority
 
-Automatic priority assignment based on grievance type
+Automatic priority assignment
 
 Due date calculated automatically
 
@@ -144,7 +171,13 @@ Assignment logged with timestamps
 
 Officers update grievance status periodically
 
-Updates visible to higher authorities and public users
+Updates visible to:
+
+Higher authorities
+
+Concerned departments
+
+Public users
 
 🔀 6.5 Inter-Department Transfer
 
@@ -158,13 +191,13 @@ Complete transfer history maintained
 
 Automated reminders before due date
 
-Mandatory justification required for overdue grievances
+Mandatory justification for overdue grievances
 
 ✅ 6.7 Resolution & Closure
 
 Grievances marked as Resolved or Rejected
 
-Full grievance lifecycle retained for audit purposes
+Full lifecycle retained for audit purposes
 
 🔐 7. Security Mechanisms
 
@@ -176,7 +209,7 @@ OTP-based authorization for sensitive actions
 
 Dual authorization during Collector–District Officer handover
 
-Audit logging for all critical system operations
+Audit logging for all critical operations
 
 ⭐ 8. Key Features
 
@@ -190,40 +223,45 @@ SMS and email acknowledgements
 
 Grievance tracking using unique ID
 
-Filtered and exportable reports
+Filtered and exportable reports (PDF / Excel)
 
 Administrative order management
 
 🧾 9. Conclusion
 
-The Grievance Management System provides a structured, secure, and accountable digital framework for grievance redressal.
+The Grievance Management System (GMS) provides a structured, secure, and accountable digital framework for grievance redressal.
 
-Its robust data model, enforced workflows, deadline accountability, and audit-ready architecture make it ideal for long-term deployment, future expansion, and sustained administrative adoption.
+With its robust data model, enforced workflows, deadline accountability, and audit-ready architecture, the system is well-suited for:
+
+✔ Long-term deployment
+
+✔ Future expansion
+
+✔ Sustained administrative adoption
 
 ⚠️ Warnings & Security Notes
 
-API Keys & Tokens:
-This project integrates Facebook Graph API and WhatsApp API.
-🚫 Never expose API keys in the repository.
-✅ Store them securely using .env files or environment variables.
+🔑 API Keys & Tokens
+Do not expose Facebook or WhatsApp API keys in the repository.
+Store them securely using .env files or environment variables.
 
-Potential Errors:
-Missing or incorrect API keys may cause runtime errors.
+🚨 Potential Errors
+Missing or invalid API credentials may cause runtime failures.
 
-Sensitive Data:
-Do not commit real user data or credentials to the repository.
+🔒 Sensitive Data
+Never commit real user data or credentials.
 
 💻 Installation & Setup
 # Clone the repository
 git clone https://github.com/jeevanjj004/Grivevance_MA.git
 
-# Navigate to the project directory
+# Navigate to project directory
 cd Grivevance_MA
 
-# Create a virtual environment
+# Create virtual environment
 python -m venv venv
 
-# Activate the virtual environment
+# Activate virtual environment
 # Windows
 venv\Scripts\activate
 
@@ -233,14 +271,12 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Create database migrations
+# Database migrations
 python manage.py makemigrations
-
-# Apply migrations
 python manage.py migrate
 
-# Run the development server
+# Run development server
 python manage.py runserver
 
-# Open in browser
+# Access application
 http://127.0.0.1:8000/
